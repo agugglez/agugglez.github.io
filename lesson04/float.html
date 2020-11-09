@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>CSS Template</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style>
+		* {
+			box-sizing: border-box;
+		}
+
+		body {
+			font-family: Arial, Helvetica, sans-serif;
+		}
+
+		/* Style the header */
+		.header {
+			background-color: #a2d3e2;
+			padding: 30px;
+			text-align: center;
+			font-size: 35px;
+		}
+
+		/* The navbar container */
+		.topnav {
+			overflow: hidden;
+			background-color: #284545;
+		}
+
+		/* Navbar links */
+		.topnav a {
+			float: left;
+			display: block;
+			color: white;
+			text-align: center;
+			padding: 14px 16px;
+			text-decoration: none;
+			border-right: 1px solid black;
+		}
+
+		/* Create three equal columns that floats next to each other */
+		.column {
+			float: left;
+			width: 33.33%;
+			padding: 10px;
+			height: 300px;
+			/* Should be removed. Only for demonstration */
+		}
+
+		.column1 {
+			width: 25%;
+		}
+
+		.column2 {
+			width: 50%;
+		}
+
+		.column3 {
+			width: 25%;
+			float: right;
+		}
+
+		/* Clear floats after the columns */
+		.row:after {
+			content: "";
+			display: table;
+			clear: both;
+		}
+
+		/* Style the footer */
+		.footer {
+			background-color: #284545;
+			color: white;
+			padding: 10px;
+			text-align: center;
+		}
+
+		/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+		@media (max-width: 600px) {
+			.column1 {
+				width: 50%;
+			}
+
+			.column2 {
+				width: 100%;
+			}
+
+			.column3 {
+				width: 50%;
+			}
+		}
+	</style>
+</head>
+
+<body>
+
+	<h2>CSS Template using Float</h2>
+	<p>In this example, we have created a header, three equal columns and a footer. On smaller screens, the columns will
+		stack on top of each other.</p>
+	<p>Resize the browser window to see the responsive effect.</p>
+
+	<div class="header">
+		<h2>Header</h2>
+	</div>
+
+	<div class="topnav">
+		<a href="#">Menu1</a>
+		<a href="#">Menu2</a>
+		<a href="#">Menu3</a>
+	</div>
+
+	<div class="row">
+		<div class="column column1" style="background-color:#aaa;">Column1</div>
+		<div class="column column3" style="background-color:#ccc;">Column3</div>
+		<div class="column column2" style="background-color:#bbb;">Column2</div>
+	</div>
+
+	<div class="footer">
+		<p>Footer</p>
+	</div>
+
+</body>
+
+</html>
