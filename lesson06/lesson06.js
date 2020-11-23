@@ -41,37 +41,88 @@ console.log([4, 5, 3, 1, 2].bubbleSort());
 // Also do the same thing using Object.create. When using Object.create you will need a factory function instead of a function 
 // constructor in order to pass parameters such as ‘name’ to be set in the prototype.
 
-console.log("Exercise 3 with function constructor");
-let Person = function (name) {
-  this.name = name;
-}
-//create subclass
-let Teacher = function (name) {
-  Person.call(this, name);
-}
-Teacher.prototype = Object.create(Person.prototype);
-Teacher.prototype.teach = function (subject) {
-  console.log(this.name + ' is now teaching ' + subject);
-}
-//create an object
-const fct = new Teacher('Function Constructor Teacher');
-fct.teach('WAP');
+(function () {
+  console.log("Exercise 3 with function constructor");
+  const Person = function (name) {
+    this.name = name;
+  }
+  //create subclass
+  const Teacher = function (name) {
+    Person.call(this, name);
+  }
+  Teacher.prototype = Object.create(Person.prototype);
+  Teacher.prototype.teach = function (subject) {
+    console.log(this.name + ' is now teaching ' + subject);
+  }
+  //create an object
+  const fct = new Teacher('Function Constructor Teacher');
+  fct.teach('WAP');
 
-console.log("Exercise 3 with Object.create()");
-Person = {
-  name: "unknown",
-}
-//create subclass
-Teacher = Object.create(Person);
-Teacher.teach = function (subject) {
-  console.log(this.name + ' is now teaching ' + subject);
-}
-// factory method
-const teacherFactory = function (name) {
-  let result = Object.create(Teacher);
-  result.name = name;
-  return result;
-}
-//create an object
-const oct = teacherFactory('Object Create Teacher');
-oct.teach('WAP');
+  console.log("Exercise 3 with Object.create()");
+  const PersonObj = {
+    name: "unknown",
+  }
+  //create subclass
+  const TeacherObj = Object.create(PersonObj);
+  TeacherObj.teach = function (subject) {
+    console.log(this.name + ' is now teaching ' + subject);
+  }
+  // factory method
+  const teacherFactory = function (name) {
+    let result = Object.create(TeacherObj);
+    result.name = name;
+    return result;
+  }
+  //create an object
+  const oct = teacherFactory('Object Create Teacher');
+  oct.teach('WAP');
+})();
+
+// Exercise 4:
+// Write code that will create person, student, and professor objects.
+(function () {
+  // Person function constructor
+  function Person(name, age) {
+    this.name = name;
+    this.age = age;
+  };
+
+  Person.prototype.greeting = function () {
+    console.log('Greetings, my name is ' + this.name + ' and I am ' + this.age + ' years old.');
+  };
+  Person.prototype.salute = function () {
+    console.log('Good morning!, and in case I dont see you, good afternoon, good evening and good night!');
+  }
+
+  // Student function constructor
+  function Student(name, age, major) {
+    Person.call(this, name, age);
+    this.major = major;
+  };
+
+  Student.prototype = new Person();
+
+  Student.prototype.greeting = function () {
+    console.log('Hey, my name is ' + this.name + ' and I am studying ' + this.major);
+  };
+
+  // Student function constructor
+  function Professor(name, age, department) {
+    Person.call(this, name, age);
+    this.department = department;
+  };
+
+  Professor.prototype = new Person();
+
+  Professor.prototype.greeting = function () {
+    console.log("Good day, my name is " + this.name + " and I am in the " + this.department + " department.");
+  };
+
+  console.log("Exercise 4");
+  const prof = new Professor('Einstein', 141, "Physics");
+  const stu = new Student('Redbear', 19, 'Pirating');
+  prof.greeting();
+  prof.salute();
+  stu.greeting();
+  stu.salute();
+})();
